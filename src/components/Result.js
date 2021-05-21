@@ -1,23 +1,12 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import EskomContext from '../context/eskom/eskomsContext';
 
 const Result = ({ navigation, suburb }) => {
-
-    const add = async () => {
-
-
-        // try {
-        //     const jsonValue = JSON.stringify(value)
-        //     await AsyncStorage.setItem('@storage_Key', jsonValue)
-        // } catch (e) {
-        //     // saving error
-        // }
-
-
-        console.log(JSON.stringify(suburb));
-
-    }
+    const eskomContext = useContext(EskomContext);
+    const {
+        add
+    } = eskomContext;
 
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -33,7 +22,7 @@ const Result = ({ navigation, suburb }) => {
                     <Text>{suburb.MunicipalityName}, {suburb.ProvinceName}</Text>
                 </View>
             </TouchableNativeFeedback>
-            <TouchableNativeFeedback onPress={add}>
+            <TouchableNativeFeedback onPress={() => add(suburb)}>
                 <Text style={styles.addbtn}>
                     Add
                 </Text>

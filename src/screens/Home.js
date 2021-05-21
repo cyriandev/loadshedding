@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Constants from 'expo-constants';
-import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import EskomContext from '../context/eskom/eskomsContext';
 
 const Home = ({ navigation }) => {
-    const [status, setStatus] = useState(0);
+    const eskomContext = useContext(EskomContext);
+    const {
+        getStatus,
+        status,
+        status_loading,
+    } = eskomContext;
 
     useEffect(() => {
-        Getstatus();
+        getStatus();
     }, [])
 
 
-    const Getstatus = async () => {
-        try {
-            const res = await axios.get('https://loadshedding.eskom.co.za/LoadShedding/GetStatus');
-            setStatus(res.data);
-        } catch (err) {
-            console.log("something went wrong: ", err);
-        }
-    }
+
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-
-            <Text>Not LoadSheding {status}</Text>
+            <View>
+                <Text style={styles.title}>Status</Text>
+                {status_loading ? <Text>Loading...</Text> :
+                    status && <View>{status === 1 ? <Text>No Loadsheding</Text> : <Text>Loadsheding</Text>}</View>
+                }
+            </View>
             <Button title="find suburb" onPress={() => navigation.navigate('Search')} />
         </View>
     )
@@ -37,6 +39,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingTop: Constants.statusBarHeight,
-        margin: 10
+        padding: 10
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: '700'
     }
 });

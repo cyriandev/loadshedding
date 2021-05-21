@@ -1,0 +1,14 @@
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+
+export const STATUS_LOADING = "STATUS_LOADING";
+export const SCHEDULE_LOADING = "SCHEDULE_LOADING";
+export const SEARCH_LOADING = "SEARCH_LOADING";
+
+
+export const GET_STATUS = "GET_STATUS";
+export const GET_RESULTS = "GET_RESULTS";
+export const GET_SCHEDULE = "GET_SCHEDULE";
+
+export const SCHEDULE_ERROR = "CLEAR_ERRORS";
+export const SEARCH_ERROR = "CLEAR_ERRORS";
+export const STATUS_ERROR = "STATUS_ERROR";

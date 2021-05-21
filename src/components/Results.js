@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import Result from './Result';
 
 const Results = ({ navigation, results }) => {
+
     return (
         <>
             {
                 results.length ? <FlatList
-                    data={results} renderItem={({ item, index }) => <Result
+                    data={results.slice(0, 20)} renderItem={({ item, index }) => <Result
                         key={index}
                         suburb={item}
                         navigation={navigation}

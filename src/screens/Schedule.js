@@ -1,44 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants';
 import Cheerio from 'cheerio';
 import { Picker } from '@react-native-picker/picker';
 import Schedules from '../components/Schedules';
+import EskomContext from '../context/eskom/eskomsContext';
 
 const Schedule = ({ route }) => {
     const { id, total, province, title, subtitle } = route.params;
-    const [schedule, setschedule] = useState([])
     const [stage, setStage] = useState(1);
-    const [loading, setLoading] = useState(true)
-
+    const eskomContext = useContext(EskomContext);
+    const {
+        getSchedule,
+        schedule,
+        schedule_loading,
+    } = eskomContext;
 
     useEffect(() => {
-        Getschedule();
+        getSchedule({ id, stage, province, total });
     }, [id, total, province, stage])
 
-    const Getschedule = async () => {
-        setschedule([]);
-        try {
-            setLoading(true)
-            const res = await fetch(`https://loadshedding.eskom.co.za/LoadShedding/GetScheduleM/${id}/${stage}/${province}/${id}`);
-            // setschedule1(res.data);
-            const htmlString = await res.text();
-            const $ = Cheerio.load(htmlString);
-            $('.scheduleDay').map((index, item) => {
-                setschedule(schedule => [...schedule, {
-                    date: $('.dayMonth', item).text().trim(),
-                    times: $('a', item).text()
-                }])
-            })
-            setLoading(false)
-        } catch (err) {
-            console.log("something went wrong: ", err);
-        }
-    }
     return (
         <View style={styles.container}>
             <View>
-                <Text>{title}</Text>
+                <Text style={styles.title}>{title}</Text>
                 <Text>{subtitle}</Text>
             </View>
             <Picker
@@ -52,7 +37,7 @@ const Schedule = ({ route }) => {
                 <Picker.Item label="Stage 4, Up to 4000 MW to be shed" value="4" />
             </Picker>
             <View style={{ flex: 1 }}>
-                {loading ? <View><ActivityIndicator size="large" color="#bdbdbd" /></View> :
+                {schedule_loading ? <View><ActivityIndicator size="large" color="#bdbdbd" /></View> :
                     <Schedules schedule={schedule} />
                 }
             </View>
@@ -67,6 +52,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingTop: Constants.statusBarHeight,
-        margin: 10
+        padding: 10
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: '700'
     }
 })
