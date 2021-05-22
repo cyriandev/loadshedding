@@ -13,6 +13,8 @@ const Search = ({ navigation }) => {
         getResults,
         results,
         search_loading,
+        // getStorageData,
+        // storage
     } = eskomContext;
 
     useEffect(() => {

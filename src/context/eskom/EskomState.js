@@ -9,23 +9,30 @@ import {
     STATUS_LOADING,
     SCHEDULE_LOADING,
     SEARCH_LOADING,
+    STORAGE_LOADING,
     STATUS_ERROR,
     SCHEDULE_ERROR,
     SEARCH_ERROR,
     GET_STATUS,
     GET_RESULTS,
     GET_SCHEDULE,
+    GET_STORATE_DATA,
+    SAVE_TO_STORATE
 } from '../types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 const EskomState = ({ children }) => {
     const initialState = {
         schedule: [],
         status: null,
         results: [],
+        storage: [],
         error: null,
         schedule_loading: false,
         search_loading: false,
         status_loading: false,
+        storage_loading: false
     }
     const [state, dispatch] = useReducer(EskomReducer, initialState);
     const db = SQLite.openDatabase("eskom.db");
@@ -49,29 +56,33 @@ const EskomState = ({ children }) => {
         }
     }
 
-    // db.transaction((tx) => {
-    //     tx.executeSql("SELECT * FROM suburbs", [], (_, { rows }) => {
-    //         console.log(rows)
-    //         tx.executeSql("CREATE TABLE IF NOT EXISTS suburbs (id integer primary key not null, identifyer int, name text, province text, total int)", []);
-    //         if (rows.length) {
-    //             // tx.executeSql("DROP TABLE IF EXISTS suburbs");
 
-    //         }
-    //     }
-    //     );
-    // });
-
-    const add = async (item) => {
-        // db.transaction(
-        //     (tx) => {
-        //         tx.executeSql("INSERT INTO suburbs (identifyer, name, province, total) VALUES (?, ?, ?, ?)", [item.Id, item.Name, item.ProvinceName, item.Total]);
-        //         tx.executeSql("SELECT * FROM suburbs", [], (_, { rows }) =>
-        //             console.log(JSON.stringify(rows))
-        //         );
-        //     }
-        // );
-        console.log(item)
+    const add = async (items) => {
+        setStorageLoading();
+        try {
+            await AsyncStorage.setItem('@suburbs', JSON.stringify(items))
+            dispatch({
+                type: SAVE_TO_STORATE,
+                payload: items
+            })
+        } catch (e) {
+            Alert(e);
+        }
     }
+
+    const getStorageData = async () => {
+        setStorageLoading();
+        try {
+            const data = await AsyncStorage.getItem('@suburbs')
+            dispatch({
+                type: GET_STORATE_DATA,
+                payload: JSON.parse(data)
+            })
+        } catch (e) {
+            Alert(e);
+        }
+    }
+
 
     // Get Search results
     const getResults = async (term) => {
@@ -132,6 +143,7 @@ const EskomState = ({ children }) => {
     const setStatusLoading = () => dispatch({ type: STATUS_LOADING })
     const setSearchLoading = () => dispatch({ type: SEARCH_LOADING })
     const setScheduleLoading = () => dispatch({ type: SCHEDULE_LOADING })
+    const setStorageLoading = () => dispatch({ type: STORAGE_LOADING })
 
 
     return <EskomContext.Provider
@@ -139,13 +151,15 @@ const EskomState = ({ children }) => {
             status: state.status,
             schedule: state.schedule,
             results: state.results,
+            storage: state.storage,
             schedule_loading: state.schedule_loading,
             status_loading: state.status_loading,
             search_loading: state.search_loading,
             getStatus,
             getResults,
             getSchedule,
-            add
+            add,
+            getStorageData
         }}
     >
         {children}

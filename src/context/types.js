@@ -8,6 +8,9 @@ export const SEARCH_LOADING = "SEARCH_LOADING";
 export const GET_STATUS = "GET_STATUS";
 export const GET_RESULTS = "GET_RESULTS";
 export const GET_SCHEDULE = "GET_SCHEDULE";
+export const GET_STORATE_DATA = "GET_STORATE_DATA";
+
+export const SAVE_TO_STORATE = "SAVE_TO_STORATE";
 
 export const SCHEDULE_ERROR = "CLEAR_ERRORS";
 export const SEARCH_ERROR = "CLEAR_ERRORS";

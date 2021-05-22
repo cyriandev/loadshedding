@@ -9,6 +9,9 @@ import {
     GET_STATUS,
     GET_RESULTS,
     GET_SCHEDULE,
+    GET_STORATE_DATA,
+    STORAGE_LOADING,
+    SAVE_TO_STORATE
 } from '../types';
 
 
@@ -18,6 +21,11 @@ export default (state, action) => {
             return {
                 ...state,
                 status_loading: true
+            }
+        case STORAGE_LOADING:
+            return {
+                ...state,
+                storage_loading: true
             }
         case SEARCH_LOADING:
             return {
@@ -64,6 +72,18 @@ export default (state, action) => {
                 ...state,
                 schedule: action.payload,
                 schedule_loading: false
+            }
+        case GET_STORATE_DATA:
+            return {
+                ...state,
+                storage: action.payload,
+                storage_loading: false
+            }
+        case SAVE_TO_STORATE:
+            return {
+                ...state,
+                storage: action.payload,
+                storage_loading: false
             }
         case CLEAR_ERRORS:
             return {

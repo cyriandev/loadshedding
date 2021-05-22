@@ -5,8 +5,29 @@ import EskomContext from '../context/eskom/eskomsContext';
 const Result = ({ navigation, suburb }) => {
     const eskomContext = useContext(EskomContext);
     const {
-        add
+        add,
+        getStorageData,
+        storage
     } = eskomContext;
+
+
+    const save = () => {
+        getStorageData();
+        if (storage) {
+            const found = storage.some((item) => item.Id === suburb.Id);
+            if (found) {
+                navigation.navigate('Home');
+                console.log(found);
+            } else {
+                add([...storage, suburb]);
+                navigation.navigate('Home');
+                console.log('saving...');
+            }
+        } else {
+            add([suburb]);
+            navigation.navigate('Home');
+        }
+    }
 
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -22,7 +43,7 @@ const Result = ({ navigation, suburb }) => {
                     <Text>{suburb.MunicipalityName}, {suburb.ProvinceName}</Text>
                 </View>
             </TouchableNativeFeedback>
-            <TouchableNativeFeedback onPress={() => add(suburb)}>
+            <TouchableNativeFeedback onPress={save}>
                 <Text style={styles.addbtn}>
                     Add
                 </Text>
