@@ -5,8 +5,9 @@ import Cheerio from 'cheerio';
 import { Picker } from '@react-native-picker/picker';
 import Schedules from '../components/Schedules';
 import EskomContext from '../context/eskom/eskomsContext';
+import Header from '../components/Header';
 
-const Schedule = ({ route }) => {
+const Schedule = ({ route, navigation }) => {
     const { id, total, province, title, subtitle } = route.params;
     const [stage, setStage] = useState(1);
     const eskomContext = useContext(EskomContext);
@@ -22,22 +23,28 @@ const Schedule = ({ route }) => {
 
     return (
         <View style={styles.container}>
+            <Header navigation={navigation} title="Schedule">
+            </Header>
             <View>
                 <Text style={styles.title}>{title}</Text>
                 <Text>{subtitle}</Text>
             </View>
-            <Picker
-                selectedValue={stage}
-                onValueChange={(value) =>
-                    setStage(value)
-                }>
-                <Picker.Item label="Stage 1, Up to 1000 MW to be shed" value="1" />
-                <Picker.Item label="Stage 2, Up to 2000 MW to be shed" value="2" />
-                <Picker.Item label="Stage 3, Up to 3000 MW to be shed" value="3" />
-                <Picker.Item label="Stage 4, Up to 4000 MW to be shed" value="4" />
-            </Picker>
+            <View style={styles.select}>
+                <Picker
+                    selectedValue={stage}
+                    onValueChange={(value) =>
+                        setStage(value)
+                    }
+
+                >
+                    <Picker.Item label="Stage 1, Up to 1000 MW to be shed" value="1" />
+                    <Picker.Item label="Stage 2, Up to 2000 MW to be shed" value="2" />
+                    <Picker.Item label="Stage 3, Up to 3000 MW to be shed" value="3" />
+                    <Picker.Item label="Stage 4, Up to 4000 MW to be shed" value="4" />
+                </Picker>
+            </View>
             <View style={{ flex: 1 }}>
-                {schedule_loading ? <View><ActivityIndicator size="large" color="#bdbdbd" /></View> :
+                {schedule_loading ? <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator size="large" color="#bdbdbd" /></View> :
                     <Schedules schedule={schedule} />
                 }
             </View>
@@ -57,5 +64,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: '700'
+    },
+    select: {
+        borderWidth: 1,
+        marginTop: 20,
+        borderRadius: 5
     }
 })

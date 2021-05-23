@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import ScheduleItem from './ScheduleItem'
-import Constants from 'expo-constants';
+import ScheduleItem from './ScheduleItem';
+import { Entypo } from '@expo/vector-icons';
 
 const Schedules = ({ schedule }) => {
     return (
@@ -10,7 +10,17 @@ const Schedules = ({ schedule }) => {
                 data={schedule} renderItem={({ item, index }) => <ScheduleItem key={index} item={item} />}
                 keyExtractor={(item, index) => index.toString()}
                 showsVerticalScrollIndicator={false}
-            /> : <Text>We regret that we could not find an Eskom schedule</Text>
+            /> :
+                <View style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+
+                }}>
+                    <Entypo name="emoji-sad" size={60} color="#bdbdbd" />
+                    <Text style={{ fontSize: 20, marginTop: 20 }}>We regret that we could not find a schedule from Eskom</Text>
+
+                </View>
             }
         </View>
     )
@@ -22,6 +32,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingTop: Constants.statusBarHeight,
+        paddingTop: 10,
     }
 })

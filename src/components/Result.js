@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 import EskomContext from '../context/eskom/eskomsContext';
+import { Ionicons } from '@expo/vector-icons';
 
 const Result = ({ navigation, suburb }) => {
     const eskomContext = useContext(EskomContext);
@@ -17,11 +18,9 @@ const Result = ({ navigation, suburb }) => {
             const found = storage.some((item) => item.Id === suburb.Id);
             if (found) {
                 navigation.navigate('Home');
-                console.log(found);
             } else {
                 add([...storage, suburb]);
                 navigation.navigate('Home');
-                console.log('saving...');
             }
         } else {
             add([suburb]);
@@ -45,7 +44,7 @@ const Result = ({ navigation, suburb }) => {
             </TouchableNativeFeedback>
             <TouchableNativeFeedback onPress={save}>
                 <Text style={styles.addbtn}>
-                    Add
+                    <Ionicons name="ios-add-outline" size={25} color="black" />
                 </Text>
             </TouchableNativeFeedback>
         </View>
@@ -67,8 +66,9 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     addbtn: {
-        padding: 20,
-        backgroundColor: 'red',
+        padding: 15,
+        backgroundColor: '#bdbdbd',
+        borderRadius: 5,
         margin: 1
     }
 })

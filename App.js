@@ -16,11 +16,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            // headerShown: false,
+            headerShown: false,
             gestureEnabled: true,
             gestureDirection: 'horizontal',
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-
           }}
         >
           <Stack.Screen name="Home" component={Home} />

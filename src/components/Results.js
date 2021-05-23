@@ -15,7 +15,15 @@ const Results = ({ navigation, results }) => {
                     />}
                     keyExtractor={item => item.Id.toString()}
                     showsVerticalScrollIndicator={false}
-                /> : <View><Text>Nothing Found</Text></View>
+                /> : <View style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center'
+
+                }}>
+                    <Text style={{ fontSize: 20 }}>Nothing Found</Text>
+
+                </View>
             }
         </>
     )

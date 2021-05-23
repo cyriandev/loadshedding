@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { StyleSheet, Text, TouchableNativeFeedback, View } from 'react-native'
 import EskomContext from '../context/eskom/eskomsContext';
+import { Ionicons } from '@expo/vector-icons';
 
 const SavedItem = ({ suburb, navigation }) => {
 
@@ -34,7 +35,7 @@ const SavedItem = ({ suburb, navigation }) => {
             </TouchableNativeFeedback>
             <TouchableNativeFeedback onPress={remove}>
                 <Text style={styles.rmbtn}>
-                    remove
+                    <Ionicons name="ios-trash-outline" size={24} color="black" />
                 </Text>
             </TouchableNativeFeedback>
         </View>
@@ -54,7 +55,6 @@ const styles = StyleSheet.create({
     },
     rmbtn: {
         padding: 20,
-        backgroundColor: 'red',
         margin: 1
     },
     title: {

@@ -1,7 +1,6 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
 import Cheerio from 'cheerio';
-import * as SQLite from "expo-sqlite";
 import EskomContext from './eskomsContext';
 import EskomReducer from './eskomsReducer';
 import {
@@ -35,7 +34,6 @@ const EskomState = ({ children }) => {
         storage_loading: false
     }
     const [state, dispatch] = useReducer(EskomReducer, initialState);
-    const db = SQLite.openDatabase("eskom.db");
 
     // Get Status
     const getStatus = async () => {
