@@ -35,6 +35,10 @@ const Schedule = ({ route, navigation }) => {
                     onValueChange={(value) =>
                         setStage(value)
                     }
+                    style={{
+                        height: 40,
+                        color: '#000'
+                    }}
 
                 >
                     <Picker.Item label="Stage 1, Up to 1000 MW to be shed" value="1" />

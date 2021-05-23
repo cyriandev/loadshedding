@@ -7,7 +7,7 @@ const Schedules = ({ schedule }) => {
     return (
         <View style={styles.container}>
             {schedule.length ? <FlatList
-                data={schedule} renderItem={({ item, index }) => <ScheduleItem key={index} item={item} />}
+                data={schedule} renderItem={({ item, index }) => <ScheduleItem key={index} item={item} index={index} />}
                 keyExtractor={(item, index) => index.toString()}
                 showsVerticalScrollIndicator={false}
             /> :

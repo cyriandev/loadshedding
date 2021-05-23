@@ -8,7 +8,6 @@ const SavedItem = ({ suburb, navigation }) => {
     const eskomContext = useContext(EskomContext);
     const {
         add,
-        getStorageData,
         storage
     } = eskomContext;
 
@@ -24,7 +23,9 @@ const SavedItem = ({ suburb, navigation }) => {
                 province: suburb.ProvinceName,
                 title: suburb.Name,
                 subtitle: `${suburb.MunicipalityName}, ${suburb.ProvinceName}`
-            })}>
+            })}
+                background={TouchableNativeFeedback.Ripple('#0bb783')}
+            >
                 <View style={{
                     flex: 1,
                     padding: 15,
@@ -33,10 +34,10 @@ const SavedItem = ({ suburb, navigation }) => {
                     <Text>{suburb.MunicipalityName}, {suburb.ProvinceName}</Text>
                 </View>
             </TouchableNativeFeedback>
-            <TouchableNativeFeedback onPress={remove}>
-                <Text style={styles.rmbtn}>
+            <TouchableNativeFeedback onPress={remove} background={TouchableNativeFeedback.Ripple('tomato')}>
+                <View style={styles.rmbtn}>
                     <Ionicons name="ios-trash-outline" size={24} color="black" />
-                </Text>
+                </View>
             </TouchableNativeFeedback>
         </View>
     )
@@ -46,16 +47,16 @@ export default SavedItem
 
 const styles = StyleSheet.create({
     saved: {
-        backgroundColor: "#bdbdbd",
+        backgroundColor: "#e3e3e3",
         marginVertical: 3,
         borderRadius: 5,
-
+        overflow: 'hidden',
         flexDirection: 'row',
         alignItems: 'center'
     },
     rmbtn: {
-        padding: 20,
-        margin: 1
+        padding: 25,
+
     },
     title: {
         fontSize: 20,

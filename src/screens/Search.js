@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, StyleSheet, Text, TextInput, View, TouchableWithoutFeedback } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TextInput, View, TouchableNativeFeedback } from 'react-native';
 import Results from '../components/Results';
 import EskomContext from '../context/eskom/eskomsContext';
 import Header from '../components/Header';
@@ -28,7 +28,7 @@ const Search = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
-            <Header navigation={navigation} title="Search suburb" />
+            <Header navigation={navigation} title="Search Area" />
 
             <View style={styles.inputWrapper}>
                 <Ionicons name="ios-search-outline" size={24} color="black" style={{ margin: 5 }} />
@@ -45,14 +45,19 @@ const Search = ({ navigation }) => {
                     />
                 </View>
                 {focused ?
-                    <TouchableWithoutFeedback onPress={() => {
-                        setTerm('')
-                        search.current.blur()
-                    }}>
-                        <View style={{ padding: 2, backgroundColor: '#bdbdbd', borderRadius: 5 }}>
-                            <Ionicons name="ios-close-outline" size={32} color="black" />
-                        </View>
-                    </TouchableWithoutFeedback> : null
+                    <View style={{ borderRadius: 5, overflow: 'hidden' }}>
+                        <TouchableNativeFeedback onPress={() => {
+                            setTerm('')
+                            search.current.blur()
+                        }}
+                            background={TouchableNativeFeedback.Ripple('tomato')}
+                        >
+                            <View style={{ padding: 2, backgroundColor: '#e3e3e3', borderRadius: 5 }}>
+                                <Ionicons name="ios-close-outline" size={32} color="black" />
+                            </View>
+                        </TouchableNativeFeedback>
+                    </View>
+                    : null
 
                 }
             </View>

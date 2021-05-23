@@ -1,15 +1,22 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableNativeFeedback } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
 const Header = ({ children, title, navigation }) => {
     return (
         <View style={styles.header}>
-            <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-                <View style={styles.close}>
-                    <Ionicons name="ios-chevron-back" size={32} color="black" />
-                </View>
-            </TouchableWithoutFeedback>
+            <View style={{
+                borderRadius: 20, overflow: 'hidden',
+                backgroundColor: '#e3e3e3',
+                marginRight: 10,
+            }}>
+                <TouchableNativeFeedback onPress={() => navigation.goBack()} background={TouchableNativeFeedback.Ripple('#0bb783')}>
+                    <View style={styles.close}>
+                        <Ionicons name="ios-chevron-back" size={30} color="black" />
+                    </View>
+                </TouchableNativeFeedback>
+            </View>
+
             <View style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -27,13 +34,14 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10,
+        paddingVertical: 20,
+        // backgroundColor: '#fff'
     }
     ,
     close: {
-        paddingVertical: 10,
-        marginRight: 10,
-        borderRadius: 5
+        paddingHorizontal: 6,
+        paddingVertical: 5,
+        borderRadius: 25
     },
     title: {
         fontSize: 18,

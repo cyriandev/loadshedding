@@ -37,17 +37,18 @@ const Home = ({ navigation }) => {
                     }}>Welcome</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-
-
-                    <TouchableNativeFeedback onPress={() => navigation.navigate('Search')}>
-                        <Text>
-                            <Ionicons name="ios-search-outline" size={35} color="black" style={{ margin: 5 }} />
-                        </Text>
-                    </TouchableNativeFeedback>
+                    <View style={{ borderRadius: 5, overflow: 'hidden' }}>
+                        <TouchableNativeFeedback onPress={() => navigation.navigate('Search')} background={TouchableNativeFeedback.Ripple('#0bb783')}>
+                            <View style={{ borderRadius: 5 }}>
+                                <Ionicons name="ios-search-outline" size={30} color="black" style={{ margin: 5 }} />
+                            </View>
+                        </TouchableNativeFeedback>
+                    </View>
                 </View>
             </View>
             <View>
                 <Text style={styles.title}>Status</Text>
+                <Text style={{ color: '#bdbdbd' }}>National power status</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     {status_loading ? <Text>Loading...</Text> :
                         status && <View style={{ paddingVertical: 10 }}>{status === 1 ?
@@ -64,18 +65,18 @@ const Home = ({ navigation }) => {
                             </View>
                         }</View>
                     }
-
-                    <View>
-                        <TouchableNativeFeedback onPress={() => getStatus()}>
-                            <Text>
-                                <Ionicons name="ios-refresh-outline" size={35} color="black" />
-                            </Text>
+                    <View style={{ borderRadius: 5, overflow: 'hidden' }}>
+                        <TouchableNativeFeedback onPress={() => getStatus()} background={TouchableNativeFeedback.Ripple('#0bb783')}>
+                            <View style={{ padding: 10, borderRadius: 5 }}>
+                                <Ionicons name="ios-refresh-outline" size={30} color="black" />
+                            </View>
                         </TouchableNativeFeedback>
                     </View>
 
                 </View>
             </View>
             <View style={{ flex: 1, marginTop: 20 }}>
+                <Text style={{ marginBottom: 20 }}>Watchlist</Text>
                 {storage_loading ? <View><ActivityIndicator size="large" color="#bdbdbd" /></View> :
                     <Saved saved={storage} navigation={navigation} />
                 }
