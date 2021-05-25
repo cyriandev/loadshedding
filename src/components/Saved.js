@@ -20,12 +20,14 @@ const Saved = ({ saved, navigation }) => {
                     justifyContent: 'center'
 
                 }}>
-                    <TouchableNativeFeedback onPress={() => navigation.navigate('Search')} background={TouchableNativeFeedback.Ripple('#0bb783')}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 30 }}>
-                            <MaterialIcons name="playlist-add" size={30} color="black" />
-                            <Text style={{ marginLeft: 5, fontSize: 20 }}>Add Area</Text>
-                        </View>
-                    </TouchableNativeFeedback>
+                    <View style={{ borderRadius: 5, overflow: 'hidden' }}>
+                        <TouchableNativeFeedback onPress={() => navigation.navigate('Search')} background={TouchableNativeFeedback.Ripple('#bdbdbd')}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', padding: 20 }}>
+                                <MaterialIcons name="playlist-add" size={30} color="black" />
+                                <Text style={{ marginLeft: 5, fontSize: 20 }}>Add Area</Text>
+                            </View>
+                        </TouchableNativeFeedback>
+                    </View>
                 </View>
             }
         </View>

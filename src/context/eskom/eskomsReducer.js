@@ -11,7 +11,10 @@ import {
     GET_SCHEDULE,
     GET_STORATE_DATA,
     STORAGE_LOADING,
-    SAVE_TO_STORATE
+    SAVE_TO_STORATE,
+    GET_TWEETS,
+    TWEETS_ERROR,
+    TWEETS_LOADING
 } from '../types';
 
 
@@ -21,6 +24,11 @@ export default (state, action) => {
             return {
                 ...state,
                 status_loading: true
+            }
+        case TWEETS_LOADING:
+            return {
+                ...state,
+                tweets_loading: true
             }
         case STORAGE_LOADING:
             return {
@@ -55,11 +63,23 @@ export default (state, action) => {
                 error: action.payload,
                 schedule_loading: false
             }
+        case TWEETS_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+                tweets_loading: false
+            }
         case GET_RESULTS:
             return {
                 ...state,
                 results: action.payload,
                 search_loading: false
+            }
+        case GET_TWEETS:
+            return {
+                ...state,
+                tweets: action.payload,
+                tweets_loading: false
             }
         case GET_STATUS:
             return {

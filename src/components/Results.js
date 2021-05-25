@@ -21,7 +21,7 @@ const Results = ({ navigation, results }) => {
                     justifyContent: 'center'
 
                 }}>
-                    <Text style={{ fontSize: 20 }}>Nothing Found</Text>
+                    <Text style={{ fontSize: 20 }}>Area not Found</Text>
 
                 </View>
             }

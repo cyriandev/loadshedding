@@ -1,2 +1,2 @@
 # loadsheding
-A mobile application for loadsheding information
+A mobile application for loadshedding information

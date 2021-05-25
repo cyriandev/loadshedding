@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants';
-import Cheerio from 'cheerio';
 import { Picker } from '@react-native-picker/picker';
 import Schedules from '../components/Schedules';
 import EskomContext from '../context/eskom/eskomsContext';
@@ -23,11 +22,10 @@ const Schedule = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Header navigation={navigation} title="Schedule">
-            </Header>
+            <Header navigation={navigation} title="Schedule" />
             <View>
                 <Text style={styles.title}>{title}</Text>
-                <Text>{subtitle}</Text>
+                <Text style={{ color: 'grey' }}>{subtitle}</Text>
             </View>
             <View style={styles.select}>
                 <Picker
@@ -37,7 +35,7 @@ const Schedule = ({ route, navigation }) => {
                     }
                     style={{
                         height: 40,
-                        color: '#000'
+                        color: 'gray'
                     }}
 
                 >
@@ -49,7 +47,7 @@ const Schedule = ({ route, navigation }) => {
             </View>
             <View style={{ flex: 1 }}>
                 {schedule_loading ? <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator size="large" color="#bdbdbd" /></View> :
-                    <Schedules schedule={schedule} />
+                    <Schedules schedule={schedule} title={title} province={province} />
                 }
             </View>
         </View>
@@ -70,8 +68,8 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     select: {
-        borderWidth: 1,
         marginTop: 20,
-        borderRadius: 5
+        borderRadius: 5,
+        backgroundColor: '#e3e3e3'
     }
 })

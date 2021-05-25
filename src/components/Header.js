@@ -10,9 +10,9 @@ const Header = ({ children, title, navigation }) => {
                 backgroundColor: '#e3e3e3',
                 marginRight: 10,
             }}>
-                <TouchableNativeFeedback onPress={() => navigation.goBack()} background={TouchableNativeFeedback.Ripple('#0bb783')}>
+                <TouchableNativeFeedback onPress={() => navigation.goBack()} background={TouchableNativeFeedback.Ripple('#fff')}>
                     <View style={styles.close}>
-                        <Ionicons name="ios-chevron-back" size={30} color="black" />
+                        <Ionicons name="ios-chevron-back" size={30} color="grey" />
                     </View>
                 </TouchableNativeFeedback>
             </View>
@@ -20,6 +20,7 @@ const Header = ({ children, title, navigation }) => {
             <View style={{
                 flexDirection: 'row',
                 alignItems: 'center',
+                flex: 1
             }}>
                 <Text style={styles.title}>{title}</Text>
                 {children}

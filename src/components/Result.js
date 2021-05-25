@@ -30,14 +30,15 @@ const Result = ({ navigation, suburb }) => {
 
     return (
         <View style={{
-            flexDirection: 'row', alignItems: 'center'
+            flexDirection: 'row',
+            alignItems: 'center',
+            borderRadius: 5,
+            overflow: 'hidden',
+            marginVertical: 4
         }}>
 
             <View style={{
-                borderRadius: 5,
-                overflow: 'hidden',
                 flex: 1,
-                marginVertical: 5
             }}>
 
                 <TouchableNativeFeedback onPress={() => navigation.navigate('Schedule', {
@@ -47,24 +48,21 @@ const Result = ({ navigation, suburb }) => {
                     title: suburb.Name,
                     subtitle: `${suburb.MunicipalityName}, ${suburb.ProvinceName}`
                 })}
-                    background={TouchableNativeFeedback.Ripple('#0bb783')}
+                    background={TouchableNativeFeedback.Ripple('#e3e3e3')}
                 >
                     <View style={styles.suburb}>
                         <Text style={styles.suburbName}>{suburb.Name}</Text>
-                        <Text>{suburb.MunicipalityName}, {suburb.ProvinceName}</Text>
+                        <Text style={{ color: '#bdbdbd' }}>{suburb.MunicipalityName}, {suburb.ProvinceName}</Text>
                     </View>
                 </TouchableNativeFeedback>
             </View>
-            <View style={{
-                borderRadius: 5,
-                overflow: 'hidden'
-            }}>
-                <TouchableNativeFeedback onPress={save} background={TouchableNativeFeedback.Ripple('#0bb783')}>
-                    <View style={styles.addbtn}>
-                        <Ionicons name="ios-add-outline" size={25} color="black" />
-                    </View>
-                </TouchableNativeFeedback>
-            </View>
+
+            <TouchableNativeFeedback onPress={save} background={TouchableNativeFeedback.Ripple('#0bb783')}>
+                <View style={styles.addbtn}>
+                    <Ionicons name="ios-add-outline" size={25} color="grey" />
+                </View>
+            </TouchableNativeFeedback>
+
         </View>
 
     )
@@ -85,8 +83,6 @@ const styles = StyleSheet.create({
     },
     addbtn: {
         padding: 20,
-        backgroundColor: '#bdbdbd',
-        borderRadius: 5,
-        margin: 1
+        // backgroundColor: '#e3e3e3'
     }
 })

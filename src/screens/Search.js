@@ -31,7 +31,7 @@ const Search = ({ navigation }) => {
             <Header navigation={navigation} title="Search Area" />
 
             <View style={styles.inputWrapper}>
-                <Ionicons name="ios-search-outline" size={24} color="black" style={{ margin: 5 }} />
+                <Ionicons name="ios-search-outline" size={24} color="grey" style={{ margin: 5 }} />
                 <View style={{ flex: 1 }}>
                     <TextInput
                         ref={search}
@@ -53,7 +53,7 @@ const Search = ({ navigation }) => {
                             background={TouchableNativeFeedback.Ripple('tomato')}
                         >
                             <View style={{ padding: 2, backgroundColor: '#e3e3e3', borderRadius: 5 }}>
-                                <Ionicons name="ios-close-outline" size={32} color="black" />
+                                <Ionicons name="ios-close-outline" size={32} color="grey" />
                             </View>
                         </TouchableNativeFeedback>
                     </View>
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
     inputWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderWidth: 1,
         borderRadius: 5,
-        padding: 4
+        padding: 4,
+        backgroundColor: '#e3e3e3'
     }
 });

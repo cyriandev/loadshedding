@@ -24,19 +24,19 @@ const SavedItem = ({ suburb, navigation }) => {
                 title: suburb.Name,
                 subtitle: `${suburb.MunicipalityName}, ${suburb.ProvinceName}`
             })}
-                background={TouchableNativeFeedback.Ripple('#0bb783')}
+                background={TouchableNativeFeedback.Ripple('#fff')}
             >
                 <View style={{
                     flex: 1,
                     padding: 15,
                 }}>
                     <Text style={styles.title}>{suburb.Name}</Text>
-                    <Text>{suburb.MunicipalityName}, {suburb.ProvinceName}</Text>
+                    <Text style={{ color: 'grey' }}>{suburb.MunicipalityName}, {suburb.ProvinceName}</Text>
                 </View>
             </TouchableNativeFeedback>
             <TouchableNativeFeedback onPress={remove} background={TouchableNativeFeedback.Ripple('tomato')}>
                 <View style={styles.rmbtn}>
-                    <Ionicons name="ios-trash-outline" size={24} color="black" />
+                    <Ionicons name="ios-trash-outline" size={24} color="grey" />
                 </View>
             </TouchableNativeFeedback>
         </View>

@@ -12,7 +12,8 @@ const ScheduleItem = ({ item, index }) => {
                 })}</Text> : null}
                 <Text style={[styles.date, {
                     fontSize: (index === 0 || index === 1) ? 15 : 17,
-                    color: (index === 0 || index === 1) ? "#b5b5b5" : "#000",
+                    color: (index === 0 || index === 1) ? "grey" : "#000",
+                    fontWeight: (index === 0 || index === 1) ? "500" : "700",
                 }]}>{item.date.toString()}  </Text>
             </View>
             <View>{item.times ? item.times.match(/.{13}/g).map((time, index) => <Text key={index} style={{ marginVertical: 3, fontSize: 15, fontWeight: '500' }}>{time}</Text>) : <Text>---------- - ----------</Text>}</View>

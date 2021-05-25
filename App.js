@@ -7,6 +7,8 @@ import Home from './src/screens/Home';
 import Search from './src/screens/Search';
 import Schedule from './src/screens/Schedule';
 import EskomState from './src/context/eskom/EskomState';
+import Info from './src/screens/Info';
+import Tweets from './src/screens/Tweets';
 
 
 export default function App() {
@@ -25,6 +27,8 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="Schedule" component={Schedule} />
+          <Stack.Screen name="Info" component={Info} />
+          <Stack.Screen name="Tweets" component={Tweets} />
         </Stack.Navigator>
       </NavigationContainer>
     </EskomState>
