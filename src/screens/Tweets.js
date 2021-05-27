@@ -31,7 +31,7 @@ const Tweets = ({ navigation }) => {
                     </View>
                 </View>
             </Header>
-            {tweets_loading ? <Text>Loading...</Text> :
+            {tweets_loading ? <Text>{""}</Text> :
                 tweets.includes.users && <View style={{ paddingVertical: 10 }}>
                     <TouchableOpacity onPress={() => Linking.openURL(`https://twitter.com/Eskom_SA`)}>
                         <Text style={{ fontSize: 18, fontWeight: '700' }}>{tweets.includes.users[0].name}</Text>

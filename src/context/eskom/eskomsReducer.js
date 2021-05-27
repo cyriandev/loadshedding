@@ -96,7 +96,7 @@ export default (state, action) => {
         case GET_STORATE_DATA:
             return {
                 ...state,
-                storage: action.payload,
+                storage: action.payload ? action.payload : [],
                 storage_loading: false
             }
         case SAVE_TO_STORATE:

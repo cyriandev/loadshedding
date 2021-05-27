@@ -4,8 +4,6 @@ import Header from '../components/Header'
 import Constants from 'expo-constants';
 import History from '../../assets/Load-shedding-744x401.png';
 import { Ionicons, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
-import EskomContext from '../context/eskom/eskomsContext';
-const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
 const Info = ({ navigation }) => {

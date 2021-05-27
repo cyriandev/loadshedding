@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from 'react'
 import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback, Button } from 'react-native';
 import EskomsContext from '../context/eskom/eskomsContext';
 import Saved from '../components/Saved';
 import HomeHeader from '../components/HomeHeader';
 import Status from '../components/Status';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = ({ navigation }) => {
     const eskomsContext = useContext(EskomsContext);

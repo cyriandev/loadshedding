@@ -4,6 +4,8 @@ import SavedItem from './SavedItem'
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Saved = ({ saved, navigation }) => {
+
+
     return (
         <View style={{ flex: 1 }}>
             {
